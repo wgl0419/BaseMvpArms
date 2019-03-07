@@ -2,6 +2,7 @@ package com.zckj.parking.mvp.model.api;
 
 
 import com.zckj.parking.http.HttpResponse;
+import com.zckj.parking.mvp.model.entity.EmptyBean;
 import com.zckj.parking.mvp.model.entity.UserInfoBean;
 
 import io.reactivex.Observable;
@@ -20,5 +21,11 @@ public interface MyApis {
      */
     @POST(Api.Login)
     Observable<HttpResponse<UserInfoBean>> postLoginInfo(@Body RequestBody requestBody);
+
+    /**
+     * 登出
+     */
+    @POST(Api.doLogout)
+    Observable<HttpResponse<EmptyBean>> doLogout();
 
 }

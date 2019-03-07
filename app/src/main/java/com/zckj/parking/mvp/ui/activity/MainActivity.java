@@ -4,14 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 import com.zckj.parking.R;
 import com.zckj.parking.base.SimpleBaseActivity;
 import com.zckj.parking.di.component.DaggerMainComponent;
+import com.zckj.parking.di.module.MainModule;
+import com.zckj.parking.di.module.testModule;
 import com.zckj.parking.mvp.contract.MainContract;
+import com.zckj.parking.mvp.contract.testContract;
 import com.zckj.parking.mvp.presenter.MainPresenter;
+import com.zckj.parking.mvp.presenter.testPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.OnClick;
 
@@ -30,14 +37,18 @@ import static com.jess.arms.utils.Preconditions.checkNotNull;
  * <a href="https://github.com/JessYanCoding/MVPArmsTemplate">模版请保持更新</a>
  * ================================================
  */
-public class MainActivity extends SimpleBaseActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends SimpleBaseActivity<MainPresenter> implements MainContract.View,testContract.View {
+
+    @Inject
+    testPresenter mTestPresenter;
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerMainComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
-                .view(this)
+                .mainModule(new MainModule(this))
+                .testModule(new testModule(this))
                 .build()
                 .inject(this);
     }
@@ -93,4 +104,15 @@ public class MainActivity extends SimpleBaseActivity<MainPresenter> implements M
     public void onLoginFail() {
     }
 
+
+    @OnClick(R.id.tv_logout)
+    public void logout()
+    {
+        mTestPresenter.logOut();
+    }
+
+    @Override
+    public void onLogOutSuccess() {
+        Toast.makeText(this,"退出成功",Toast.LENGTH_SHORT).show();
+    }
 }

@@ -29,4 +29,7 @@ public interface Api {
     String RequestSuccess = "0";
     //登录
     String Login = "/manage/index.php?r=agent/passport/login";
+
+    //退出登录
+    String doLogout = "/manage/index.php?r=agent/passport/logout";
 }

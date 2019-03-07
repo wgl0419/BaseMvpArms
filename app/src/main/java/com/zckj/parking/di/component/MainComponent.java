@@ -3,10 +3,9 @@ package com.zckj.parking.di.component;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.di.scope.ActivityScope;
 import com.zckj.parking.di.module.MainModule;
-import com.zckj.parking.mvp.contract.MainContract;
+import com.zckj.parking.di.module.testModule;
 import com.zckj.parking.mvp.ui.activity.MainActivity;
 
-import dagger.BindsInstance;
 import dagger.Component;
 
 
@@ -23,17 +22,17 @@ import dagger.Component;
  * ================================================
  */
 @ActivityScope
-@Component(modules = MainModule.class, dependencies = AppComponent.class)
+@Component(modules = {MainModule.class,testModule.class}, dependencies = AppComponent.class)
 public interface MainComponent {
     void inject(MainActivity activity);
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        MainComponent.Builder view(MainContract.View view);
-
-        MainComponent.Builder appComponent(AppComponent appComponent);
-
-        MainComponent build();
-    }
+//    @Component.Builder
+//    interface Builder {
+//        @BindsInstance
+//        MainComponent.Builder view(MainContract.View view);
+//
+//        MainComponent.Builder appComponent(AppComponent appComponent);
+//
+//        MainComponent build();
+//    }
 }

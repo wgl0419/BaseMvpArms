@@ -1,8 +1,9 @@
 package com.zckj.parking.di.module;
 
+
 import com.jess.arms.di.scope.ActivityScope;
-import com.zckj.parking.mvp.contract.MainContract;
-import com.zckj.parking.mvp.model.MainModel;
+import com.zckj.parking.mvp.contract.testContract;
+import com.zckj.parking.mvp.model.testModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,7 +13,7 @@ import dagger.Provides;
  * ================================================
  * Description:
  * <p>
- * Created by MVPArmsTemplate on 12/29/2018 13:41
+ * Created by MVPArmsTemplate on 03/07/2019 16:41
  * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
  * <a href="https://github.com/JessYanCoding">Follow me</a>
  * <a href="https://github.com/JessYanCoding/MVPArms">Star me</a>
@@ -21,28 +22,23 @@ import dagger.Provides;
  * ================================================
  */
 @Module
-public  class MainModule {
+public class testModule {
+    private testContract.View view ;
 
-//    @Binds
-//    abstract MainContract.Model bindMainModel(MainModel model);
-
-
-    private MainContract.View view ;
-
-    public MainModule(MainContract.View view) {
+    public testModule(testContract.View view) {
         this.view = view;
     }
 
     @ActivityScope
     @Provides
-    MainContract.View provideMainView()
-    {
-        return this.view;
-    }
+   testContract.View providetestView()
+   {
+       return this.view;
+   }
 
     @ActivityScope
     @Provides
-    MainContract.Model provideMainModel(MainModel model)
+    testContract.Model providetestModel(testModel model)
     {
         return model;
     }

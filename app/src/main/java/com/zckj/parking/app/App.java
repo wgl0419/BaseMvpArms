@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.WindowManager;
 import android.webkit.WebView;
 
 import com.jess.arms.base.BaseApplication;
@@ -46,8 +43,6 @@ public class App extends BaseApplication {
         super.onCreate();
         instance = this;
         mContext = this;
-        //初始化屏幕宽高
-        getScreenSize();
 
         mUserAgent = new WebView(this).getSettings().getUserAgentString();
 
@@ -57,22 +52,6 @@ public class App extends BaseApplication {
         super.attachBaseContext(base);
     }
 
-
-    public void getScreenSize() {
-        WindowManager windowManager = (WindowManager)this.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        Display display = windowManager.getDefaultDisplay();
-        display.getMetrics(dm);
-        DIMEN_RATE = dm.density / 1.0F;
-        DIMEN_DPI = dm.densityDpi;
-        SCREEN_WIDTH = dm.widthPixels;
-        SCREEN_HEIGHT = dm.heightPixels;
-        if(SCREEN_WIDTH > SCREEN_HEIGHT) {
-            int t = SCREEN_HEIGHT;
-            SCREEN_HEIGHT = SCREEN_WIDTH;
-            SCREEN_WIDTH = t;
-        }
-    }
 
     public String getUserAgent() {
         return mUserAgent;

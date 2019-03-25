@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatDelegate;
-import android.webkit.WebView;
 
 import com.jess.arms.base.BaseApplication;
 
@@ -23,7 +22,6 @@ public class App extends BaseApplication {
     public static int SCREEN_HEIGHT = -1;
     public static float DIMEN_RATE = -1.0F;
     public static int DIMEN_DPI = -1;
-    private String mUserAgent;
     private static Context mContext;
     private static final String SHAREDPREFERENCES_NAME = "my_sp";
 
@@ -43,20 +41,11 @@ public class App extends BaseApplication {
         super.onCreate();
         instance = this;
         mContext = this;
-
-        mUserAgent = new WebView(this).getSettings().getUserAgentString();
-
     }
 
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
     }
-
-
-    public String getUserAgent() {
-        return mUserAgent;
-    }
-
 
     public void saveCookies(HashSet<String> cookies) {
         SharedPreferences mSPrefs = App.getInstance().getSharedPreferences(SHAREDPREFERENCES_NAME, Context.MODE_PRIVATE);

@@ -1,6 +1,11 @@
 package com.zckj.parking.di.module;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.jess.arms.di.scope.ActivityScope;
+import com.zckj.parking.di.scope.provideLayoutManager;
+import com.zckj.parking.di.scope.provideLayoutManager2;
 import com.zckj.parking.mvp.contract.MainContract;
 import com.zckj.parking.mvp.model.MainModel;
 
@@ -46,4 +51,22 @@ public  class MainModule {
     {
         return model;
     }
+
+
+    @ActivityScope
+    @Provides
+    @provideLayoutManager
+    RecyclerView.LayoutManager provideLayoutManager()
+    {
+        return new GridLayoutManager(view.getActivity(),1);
+    }
+
+    @ActivityScope
+    @Provides
+    @provideLayoutManager2
+    RecyclerView.LayoutManager provideLayoutManager2()
+    {
+        return new GridLayoutManager(view.getActivity(),1);
+    }
+
 }
